@@ -44,7 +44,7 @@ export const transformErudaOptions = (html: string, opts: DebuggerOptions): Inde
 
   let erudaScript = `eruda.init(${JSON.stringify(options)});\n`
 
-  if (plugins.length > 0) {
+  if (plugins && plugins.length > 0) {
     if (cdn === 'jsdelivr') {
       tags.push({
         tag: 'script',
