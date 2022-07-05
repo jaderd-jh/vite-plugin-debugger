@@ -46,7 +46,7 @@ export interface DebuggerOptions {
 export default (options: DebuggerOptions): Plugin => {
   const { eruda, vConsole, local, entry } = options
 
-  const entryPath = (Array.isArray(entry) ? entry : [entry]).map(path => slash(path))
+  const entryPath = entry ? (Array.isArray(entry) ? entry : [entry]).map(path => slash(path)) : []
 
   if (eruda && vConsole) {
     throw new Error("[vite-plugin-debugger]: You'd better use only one debugger tool at a time.")
