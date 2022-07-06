@@ -4,6 +4,10 @@
   "description": "A vite plugin provide the debugger tools for mobile devices.",
   "author": "jade-gjz",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaderd-jh/vite-plugin-debugger.git"
+  },
   "keywords": [
     "vite",
     "debugger",
