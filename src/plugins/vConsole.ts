@@ -6,6 +6,11 @@ import type { CommonOptions, DebuggerOptions } from '../index'
 import { transformCDN } from '../helpers'
 
 export interface vConsoleOptions extends CommonOptions {
+  /**
+   * vConsole options
+   *
+   * see also https://github.com/Tencent/vConsole/blob/dev/doc/public_properties_methods.md#vconsoleoption
+   */
   options?: VConsoleOptions
 }
 

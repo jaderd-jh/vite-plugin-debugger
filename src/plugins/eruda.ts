@@ -18,11 +18,13 @@ export type ErudaPlugin =
 export interface ErudaOptions extends CommonOptions {
   /**
    * eruda options
+   *
    * see also https://github.com/liriliri/eruda/blob/master/doc/API.md
    */
   options?: InitOptions
   /**
    * eruda plugins
+   *
    * see also https://github.com/liriliri/eruda#plugins
    */
   plugins?: ErudaPlugin[] | { name: ErudaPlugin; src: string }[]
