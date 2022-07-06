@@ -37,9 +37,9 @@ export default defineConfig(({ command, mode }) => ({
   plugins: [
     vDebugger({
       debug: mode !== 'production',
-   // cdn: 'jsdelivr', // 'jsdelivr' | 'unpkg' | 'cdnjs'
-   // src: 'custom CDN URL',
       eruda: {
+     // cdn: 'jsdelivr', // 'jsdelivr' | 'unpkg' | 'cdnjs'
+     // src: 'custom CDN URL', 
         options: {
           tool: ['console', 'elements'],
           useShadowDom: true,
