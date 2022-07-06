@@ -1,3 +1,12 @@
+## [0.0.4](https://github.com/jaderd-jh/vite-plugin-debugger/compare/v0.0.3...v0.0.4) (2022-07-06)
+
+
+### Bug Fixes
+
+* copy eruda type file from source code ([dc180ac](https://github.com/jaderd-jh/vite-plugin-debugger/commit/dc180ac2a5f5503fbaed961a9b93794806237494))
+
+
+
 ## [0.0.3](https://github.com/jaderd-jh/vite-plugin-debugger/compare/v0.0.2...v0.0.3) (2022-07-05)
 
 
