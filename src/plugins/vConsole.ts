@@ -2,10 +2,10 @@
 
 import type { HtmlTagDescriptor, IndexHtmlTransformResult, TransformResult } from 'vite'
 import type { VConsoleOptions } from 'core/options.interface'
-import type { CommonOptions, DebuggerOptions } from '../index'
 import { transformCDN } from '../helpers'
+import type { CommonConfig, DebuggerOptions } from '../types'
 
-export interface vConsoleOptions extends CommonOptions {
+export interface VConsoleConfig extends CommonConfig {
   /**
    * vConsole options
    *

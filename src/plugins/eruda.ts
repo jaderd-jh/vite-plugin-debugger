@@ -1,7 +1,7 @@
 import type { InitOptions } from 'eruda'
 import type { HtmlTagDescriptor, IndexHtmlTransformResult, TransformResult } from 'vite'
-import type { CommonOptions, DebuggerOptions } from '../index'
 import { capitalize, transformCDN } from '../helpers'
+import type { CommonConfig, DebuggerOptions } from '../types'
 
 export type ErudaPlugin =
   | 'fps'
@@ -15,7 +15,7 @@ export type ErudaPlugin =
   | 'orientation'
   | 'touches'
 
-export interface ErudaOptions extends CommonOptions {
+export interface ErudaConfig extends CommonConfig {
   /**
    * eruda options
    *

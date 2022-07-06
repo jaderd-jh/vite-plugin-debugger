@@ -1,49 +1,14 @@
 import type { IndexHtmlTransformResult, Plugin, TransformResult } from 'vite'
 import slash from 'slash'
-import type { ErudaOptions, vConsoleOptions } from './plugins'
 import {
   transformErudaImport,
   transformErudaOptions,
   transformVConsoleImport,
   transformVConsoleOptions,
 } from './plugins'
-import type { CDN } from './helpers'
+import type { DebuggerOptions } from './types'
 
-export interface CommonOptions {
-  /**
-   * cdn services
-   */
-  cdn?: CDN
-  /**
-   * custom cdn url
-   */
-  src?: string
-}
-
-export interface DebuggerOptions {
-  /**
-   * debug or not
-   */
-  debug?: boolean
-  /**
-   * use node_modules
-   */
-  local?: boolean
-  /**
-   * if local is true, use this to specify the path
-   */
-  entry?: string | string[]
-  /**
-   * eruda options
-   */
-  eruda?: ErudaOptions
-  /**
-   * vConsole options
-   */
-  vConsole?: vConsoleOptions
-}
-
-export default (options: DebuggerOptions): Plugin => {
+export const vDebugger = (options: DebuggerOptions): Plugin => {
   const { eruda, vConsole, local, entry } = options
 
   const entryPath = entry ? (Array.isArray(entry) ? entry : [entry]).map(path => slash(path)) : []
@@ -80,3 +45,5 @@ export default (options: DebuggerOptions): Plugin => {
     },
   }
 }
+
+export default vDebugger
