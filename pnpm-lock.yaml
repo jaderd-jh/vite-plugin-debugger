@@ -12,15 +12,13 @@ specifiers:
   vconsole: ^3.14.6
   vite: ^2.9.13
 
-dependencies:
-  slash: 4.0.0
-
 devDependencies:
   '@jhqn/eslint-config-ts': 0.0.30_4x5o4skxv6sl53vpwefgt23khm
   bumpp: 8.2.1
   conventional-changelog-cli: 2.2.2
-  eruda: github.com/liriliri/eruda/e2fc3ac13e57cbf0cb5bb7fe4c45e16158ddc509
+  eruda: github.com/liriliri/eruda/5823e12aa1c8ac53cab77616f93087e66dda10a9
   eslint: 8.19.0
+  slash: 4.0.0
   tsup: 6.1.3_typescript@4.7.4
   typescript: 4.7.4
   vconsole: 3.14.6
@@ -3168,7 +3166,7 @@ packages:
   /slash/4.0.0:
     resolution: {integrity: sha512-3dOsAHXXUkQTpOYcoAxLIorMTp4gIQr5IW3iVb7A7lFIp0VHhnynm9izx6TssdrIcVIESAlVjtnO2K8bg+Coew==}
     engines: {node: '>=12'}
-    dev: false
+    dev: true
 
   /source-map-js/1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
@@ -3702,8 +3700,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  github.com/liriliri/eruda/e2fc3ac13e57cbf0cb5bb7fe4c45e16158ddc509:
-    resolution: {tarball: https://codeload.github.com/liriliri/eruda/tar.gz/e2fc3ac13e57cbf0cb5bb7fe4c45e16158ddc509}
+  github.com/liriliri/eruda/5823e12aa1c8ac53cab77616f93087e66dda10a9:
+    resolution: {commit: 5823e12aa1c8ac53cab77616f93087e66dda10a9, repo: git+ssh://git@github.com/liriliri/eruda.git, type: git}
     name: eruda
     version: 2.4.1
     dev: true
