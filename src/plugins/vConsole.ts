@@ -29,7 +29,7 @@ export const transformVConsoleOptions = (html: string, opts: DebuggerOptions): I
 
   tags.push({
     tag: 'script',
-    children: `var vConsole = new VConsole(${JSON.stringify(options)});`,
+    children: `var vConsole = new VConsole(${options ? JSON.stringify(options) : ''});`,
     injectTo: 'head',
   })
 

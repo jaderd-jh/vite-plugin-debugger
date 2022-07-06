@@ -44,7 +44,7 @@ export const transformErudaOptions = (html: string, opts: DebuggerOptions): Inde
     injectTo: 'head',
   })
 
-  let erudaScript = `eruda.init(${JSON.stringify(options)});\n`
+  let erudaScript = `eruda.init(${options ? JSON.stringify(options) : ''});\n`
 
   if (plugins && plugins.length > 0) {
     if (cdn === 'jsdelivr') {
