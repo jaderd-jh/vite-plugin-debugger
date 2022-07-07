@@ -1,8 +1,14 @@
-
-
 # vite-plugin-debugger
 
 A vite plugin provide the debugger tools for mobile devices.
+
+<a href="https://npmjs.com/package/vite-plugin-debugger" target="\_parent">
+  <img alt="" src="https://img.shields.io/npm/dm/vite-plugin-debugger.svg" />
+</a><a href="https://www.npmjs.com/package/vite-plugin-debugger">
+  <img src="https://badgen.net/npm/v/vite-plugin-debugger" alt="">
+</a><a href="https://github.com/jaderd-jh/vite-plugin-debugger" target="\_parent">
+  <img alt="" src="https://img.shields.io/github/stars/jaderd-jh/vite-plugin-debugger.svg?style=social&label=Star" />
+</a>
 
 **English** | [中文](./README.zh_CN.md)
 
@@ -11,7 +17,6 @@ A vite plugin provide the debugger tools for mobile devices.
 **node version:** >=14.0.0
 
 **vite version:** >=2.0.0
-
 
 ```bash
 pnpm add vite-plugin-debugger -D
@@ -38,8 +43,8 @@ export default defineConfig(({ command, mode }) => ({
     vDebugger({
       debug: mode !== 'production',
       eruda: {
-     // cdn: 'jsdelivr', // 'jsdelivr' | 'unpkg' | 'cdnjs'
-     // src: 'custom CDN URL', 
+        // cdn: 'jsdelivr', // 'jsdelivr' | 'unpkg' | 'cdnjs'
+        // src: 'custom CDN URL', 
         options: {
           tool: ['console', 'elements'],
           useShadowDom: true,
@@ -65,10 +70,8 @@ export default defineConfig(({ command, mode }) => ({
       },
     })
   ]
-})
+}))
 ```
-
-
 
 ⚠ cdnjs don't provide eruda related plugins so you can specify every plugin's CDN source like:
 
@@ -82,13 +85,12 @@ export default defineConfig(({ command, mode }) => ({
         ],
 ```
 
-
-
-For more details about eruda options, please check out [eruda API](https://github.com/liriliri/eruda/blob/master/doc/API.md).
+For more details about eruda options, please check
+out [eruda API](https://github.com/liriliri/eruda/blob/master/doc/API.md).
 
 If you prefer use eruda locally, you should install eruda and it's plugins first.
 
-```typescript
+```bash
 pnpm add eruda -D
 # or
 yarn add eruda -D
@@ -105,8 +107,8 @@ import vDebugger from 'vite-plugin-debugger'
 
 const resolve = (dir: string) => fileURLToPath(new URL(dir, import.meta.url))
 
-export default defineConfig(({ command, mode })=>({
-  plugins:[
+export default defineConfig(({ command, mode }) => ({
+  plugins: [
     vDebugger({
       debug: mode !== 'production',
       local: true,
@@ -134,9 +136,10 @@ export default defineConfig(({ command, mode })=>({
           'touches',
           // 'geolocation',
         ],
+      }
     })
   ]
-})
+}))
 ```
 
 ### For [vConsole](https://github.com/Tencent/vConsole)
@@ -149,8 +152,8 @@ import vDebugger from 'vite-plugin-debugger'
 
 const resolve = (dir: string) => fileURLToPath(new URL(dir, import.meta.url))
 
-export default defineConfig(({ command, mode })=>({
-  plugins:[
+export default defineConfig(({ command, mode }) => ({
+  plugins: [
     vDebugger({
       debug: mode !== 'production',
       vConsole: {
@@ -160,12 +163,11 @@ export default defineConfig(({ command, mode })=>({
       },
     })
   ]
-})
+}))
 ```
 
-
-
-For more details about vConsole options, please check out [vConsole API](https://github.com/Tencent/vConsole/blob/dev/doc/public_properties_methods.md).
+For more details about vConsole options, please check
+out [vConsole API](https://github.com/Tencent/vConsole/blob/dev/doc/public_properties_methods.md).
 
 If you prefer use vConsole locally, you should install vConsole first.
 
@@ -177,16 +179,14 @@ yarn add vconsole -D
 npm i vconsole -D
 ```
 
-
-
 ```typescript
 import { fileURLToPath } from 'url'
 import vDebugger from 'vite-plugin-debugger'
 
 const resolve = (dir: string) => fileURLToPath(new URL(dir, import.meta.url))
 
-export default defineConfig(({ command, mode })=>({
-  plugins:[
+export default defineConfig(({ command, mode }) => ({
+  plugins: [
     vDebugger({
       debug: mode !== 'production',
       local: true,
@@ -198,11 +198,8 @@ export default defineConfig(({ command, mode })=>({
       },
     })
   ]
-})
+}))
 ```
-
-
-
 
 ## License
 
