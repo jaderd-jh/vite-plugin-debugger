@@ -1,5 +1,5 @@
 import type { IndexHtmlTransformResult, Plugin, TransformResult } from 'vite'
-import slash from 'slash'
+import { normalizePath } from 'vite'
 import {
   transformErudaImport,
   transformErudaOptions,
@@ -11,7 +11,7 @@ import type { DebuggerOptions } from './types'
 export const vDebugger = (options: DebuggerOptions): Plugin => {
   const { eruda, vConsole, local, entry } = options
 
-  const entryPath = entry ? (Array.isArray(entry) ? entry : [entry]).map(path => slash(path)) : []
+  const entryPath = entry ? (Array.isArray(entry) ? entry : [entry]).map(path => normalizePath(path)) : []
 
   if (eruda && vConsole) {
     throw new Error("[vite-plugin-debugger]: You'd better use only one debugger tool at a time.")
