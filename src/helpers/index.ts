@@ -17,7 +17,7 @@ export const transformCDN = (pkg: string | string[], cdn?: CDN) => {
   if (cdn === 'cdnjs') {
     if (!Array.isArray(pkg)) {
       if (pkg === 'eruda') {
-        return 'https://cdnjs.cloudflare.com/ajax/libs/eruda/2.4.1/eruda.min.js'
+        return 'https://cdnjs.cloudflare.com/ajax/libs/eruda/2.5.0/eruda.min.js'
       }
       throw new Error(`[vite-plugin-debugger]: ${cdn} only support eruda without its plugins.`)
     }
