@@ -4,6 +4,7 @@ import type { HtmlTagDescriptor, IndexHtmlTransformResult, TransformResult } fro
 import type { VConsoleOptions } from 'core/options.interface'
 import { transformCDN } from '../helpers'
 import type { CommonConfig, DebuggerOptions } from '../types'
+import { debugInit } from '../index'
 
 export interface VConsoleConfig extends CommonConfig {
   /**
@@ -29,20 +30,22 @@ export const transformVConsoleOptions = (html: string, opts: DebuggerOptions): I
 
   tags.push({
     tag: 'script',
-    children: `var vConsole = new VConsole(${options ? JSON.stringify(options) : ''});`,
+    children: `${debugInit(debug)}\n if(showDebug===true){var vConsole = new VConsole(${JSON.stringify(
+      options || {}
+    )})};`,
     injectTo: 'head',
   })
 
-  if (debug === true) {
+  if (debug === true || debug === false) {
     return {
       html,
       tags,
     }
   }
 
-  if (debug === false) {
-    return html
-  }
+  // if (debug === false) {
+  //   return html
+  // }
 
   if (process.env.NODE_ENV !== 'production') {
     return {
@@ -59,11 +62,9 @@ export const transformVConsoleImport = (
   const { debug } = opts
   const { options = {} } = opts.vConsole
   return {
-    code: debug
-      ? `/* eslint-disable */;import VConsole from 'vconsole';new VConsole(${JSON.stringify(
-          options
-        )});/* eslint-enable */${code}`
-      : code,
+    code: `/* eslint-disable */;import VConsole from 'vconsole'; ${debugInit(
+      debug
+    )}\n if(showDebug===true){new VConsole(${JSON.stringify(options)})};/* eslint-enable */${code}`,
     map: null,
   }
 }

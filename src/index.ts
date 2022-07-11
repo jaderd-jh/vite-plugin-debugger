@@ -8,6 +8,20 @@ import {
 } from './plugins'
 import type { DebuggerOptions } from './types'
 
+export const debugInit = (debug: boolean) => {
+  return `
+    let showDebug=false;
+    let queryStr='';
+    const result = (window.location.href || '').match(new RegExp('[\?\&]debugwhatever=([^\&]+)', 'i'));
+    if (Array.isArray(result) && result.length > 1) queryStr= result[1];
+    if (queryStr === 'true') localStorage.setItem('debugwhatever', 'true');
+    const storageStr = localStorage.getItem('debugwhatever')
+    if (${debug === true} || storageStr === 'true'){
+      showDebug=true
+    };
+  `
+}
+
 export const vDebugger = (options: DebuggerOptions): Plugin => {
   const { eruda, vConsole, local, entry } = options
 

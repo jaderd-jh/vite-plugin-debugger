@@ -2,6 +2,7 @@ import type { InitOptions } from 'eruda'
 import type { HtmlTagDescriptor, IndexHtmlTransformResult, TransformResult } from 'vite'
 import { capitalize, transformCDN } from '../helpers'
 import type { CommonConfig, DebuggerOptions } from '../types'
+import { debugInit } from '../index'
 
 export type ErudaPlugin =
   | 'fps'
@@ -44,7 +45,7 @@ export const transformErudaOptions = (html: string, opts: DebuggerOptions): Inde
     injectTo: 'head',
   })
 
-  let erudaScript = `eruda.init(${options ? JSON.stringify(options) : ''});\n`
+  let erudaScript = `eruda.init(${JSON.stringify(options || {})});`
 
   if (plugins && plugins.length > 0) {
     if (cdn === 'jsdelivr') {
@@ -74,20 +75,20 @@ export const transformErudaOptions = (html: string, opts: DebuggerOptions): Inde
 
   tags.push({
     tag: 'script',
-    children: erudaScript,
+    children: `${debugInit(debug)}\n if(showDebug===true){${erudaScript}}`,
     injectTo: 'head',
   })
 
-  if (debug === true) {
+  if (debug === true || debug === false) {
     return {
       html,
       tags,
     }
   }
 
-  if (debug === false) {
-    return html
-  }
+  // if (debug === false) {
+  //   return html
+  // }
 
   if (process.env.NODE_ENV !== 'production') {
     return {
@@ -117,7 +118,9 @@ export const transformErudaImport = (
   }
 
   return {
-    code: debug ? `/* eslint-disable */;${importCode}${erudaScript}/* eslint-enable */${code}` : code,
+    code: `/* eslint-disable */;\n${importCode}\n ${debugInit(
+      debug
+    )}if(showDebug===true){${erudaScript}}\n/* eslint-enable */\n${code}`,
     map: null,
   }
 }
