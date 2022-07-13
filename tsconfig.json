@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
-    "moduleResolution": "Node"
+    "moduleResolution": "Node",
+    "module": "ESNext",
+    "types": ["vite/client"]
   },
   "include": ["src/**/*"]
 }
