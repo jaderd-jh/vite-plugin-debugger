@@ -43,7 +43,7 @@ export const transformVConsoleOptions = (html: string, opts: DebuggerOptions): I
     }
   }
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (!import.meta.env.PROD) {
     return {
       html,
       tags,

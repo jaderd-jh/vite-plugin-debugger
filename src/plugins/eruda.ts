@@ -52,7 +52,10 @@ export const transformErudaOptions = (html: string, opts: DebuggerOptions): Inde
       tags.push({
         tag: 'script',
         attrs: {
-          src: transformCDN(plugins.map(plugin => `eruda-${plugin}`)),
+          src: transformCDN(
+            plugins.map(plugin => `eruda-${plugin}`),
+            cdn
+          ),
         },
         injectTo: 'head',
       })
@@ -86,7 +89,7 @@ export const transformErudaOptions = (html: string, opts: DebuggerOptions): Inde
     }
   }
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (!import.meta.env.PROD) {
     return {
       html,
       tags,
