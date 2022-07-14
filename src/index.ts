@@ -6,19 +6,23 @@ import {
   transformVConsoleImport,
   transformVConsoleOptions,
 } from './plugins'
-import type { DebuggerOptions } from './types'
+import type { ActivateWayConfig, DebuggerOptions } from './types'
 
-export const debugInit = (debug: boolean) => {
+export const debugInit = (debug: boolean, activateWay: ActivateWayConfig) => {
   return `
-    let showDebug=false;
-    let queryStr='';
-    const result = (window.location.href || '').match(new RegExp('[\?\&]debugwhatever=([^\&]+)', 'i'));
-    if (Array.isArray(result) && result.length > 1) queryStr= result[1];
-    if (queryStr === 'true') localStorage.setItem('debugwhatever', 'true');
-    const storageStr = localStorage.getItem('debugwhatever')
-    if (${debug === true} || storageStr === 'true'){
-      showDebug=true
-    };
+    let showDebug=${debug};
+    let storageStr = ''
+    if(${activateWay?.way === 'url'}){
+      let queryStr='';
+      const result = (window.location.href || '').match(new RegExp('[\?\&]${
+        activateWay?.param || 'debugwhatever'
+      }=([^\&]+)', 'i'));
+      if (Array.isArray(result) && result.length > 1) queryStr= result[1];
+      if (queryStr === 'true') localStorage.setItem('${activateWay?.param || 'debugwhatever'}', 'true');
+    }
+    if(${activateWay?.way === 'url' || activateWay?.way === 'storage'})
+      storageStr = localStorage.getItem('${activateWay?.param || 'debugwhatever'}')
+    if (storageStr === 'true'){ showDebug=true };
   `
 }
 

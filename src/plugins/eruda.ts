@@ -32,7 +32,7 @@ export interface ErudaConfig extends CommonConfig {
 }
 
 export const transformErudaOptions = (html: string, opts: DebuggerOptions): IndexHtmlTransformResult => {
-  const { debug } = opts
+  const { debug, activateWay } = opts
   const { options, plugins, cdn = 'jsdelivr', src } = opts.eruda
 
   const tags: HtmlTagDescriptor[] = []
@@ -75,7 +75,7 @@ export const transformErudaOptions = (html: string, opts: DebuggerOptions): Inde
 
   tags.push({
     tag: 'script',
-    children: `${debugInit(debug)}\n if(showDebug===true){${erudaScript}}`,
+    children: `${debugInit(debug, activateWay)}\n if(showDebug===true){ ${erudaScript}}`,
     injectTo: 'head',
   })
 
@@ -98,7 +98,7 @@ export const transformErudaImport = (
   code: string,
   opts: DebuggerOptions
 ): Promise<TransformResult> | TransformResult => {
-  const { debug } = opts
+  const { debug, activateWay } = opts
   const { options = {}, plugins } = opts.eruda
 
   let importCode = "import eruda from 'eruda';"
@@ -115,7 +115,8 @@ export const transformErudaImport = (
 
   return {
     code: `/* eslint-disable */;\n${importCode}\n ${debugInit(
-      debug
+      debug,
+      activateWay
     )}if(showDebug===true){${erudaScript}}\n/* eslint-enable */\n${code}`,
     map: null,
   }

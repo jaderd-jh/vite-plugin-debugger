@@ -12,11 +12,25 @@ export interface CommonConfig {
   src?: string
 }
 
+export interface ActivateWayConfig {
+  /**
+   * use url or storage
+   */
+  way: 'url' | 'storage'
+  /**
+   * parameter name
+   */
+  param?: string
+}
 export interface DebuggerOptions {
   /**
    * debug or not
    */
   debug?: boolean
+  /**
+   * activate way
+   */
+  activateWay?: ActivateWayConfig
   /**
    * use node_modules
    */
