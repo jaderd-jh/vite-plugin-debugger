@@ -1,0 +1,45 @@
+{
+  "name": "vite-plugin-debugger",
+  "version": "0.0.5",
+  "description": "A vite plugin provide the debugger tools for mobile devices.",
+  "author": "jade-gjz",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaderd-jh/vite-plugin-debugger.git"
+  },
+  "keywords": [
+    "vite",
+    "debugger",
+    "plugin",
+    "eruda",
+    "vConsole",
+    "mobile"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsup src/index.ts --dts --watch",
+    "build": "tsup src/index.ts --dts",
+    "prepublish": "pnpm build",
+    "lint": "eslint . --fix",
+    "release": "bumpp package.json --commit --push --tag && pnpm publish --access public --no-git-checks",
+    "postpublish": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md && git commit -am \"chore(docs): update CAHNGELOG.md\" && git push"
+  },
+  "peerDependencies": {
+    "eruda": "^2.4.0",
+    "vconsole": "^3.14.0",
+    "vite": "^2.0.0 || ^3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "eruda": {
+      "optional": true
+    },
+    "vconsole": {
+      "optional": true
+    }
+  }
+}

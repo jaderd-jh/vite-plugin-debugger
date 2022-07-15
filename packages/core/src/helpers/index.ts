@@ -1,3 +1,5 @@
+import type { ActivateWayConfig } from '../types'
+
 export type CDN = 'jsdelivr' | 'unpkg' | 'cdnjs'
 
 export const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
@@ -25,4 +27,22 @@ export const transformCDN = (pkg: string | string[], cdn?: CDN) => {
   }
 
   return ''
+}
+
+export const debugInit = (debug: boolean, activateWay: ActivateWayConfig) => {
+  return `
+    let showDebug=${debug};
+    let storageStr = ''
+    if(${activateWay?.way === 'url'}){
+      let queryStr='';
+      const result = (window.location.href || '').match(new RegExp('[\?\&]${
+        activateWay?.param || 'debugwhatever'
+      }=([^\&]+)', 'i'));
+      if (Array.isArray(result) && result.length > 1) queryStr= result[1];
+      if (queryStr === 'true') localStorage.setItem('${activateWay?.param || 'debugwhatever'}', 'true');
+    }
+    if(${activateWay?.way === 'url' || activateWay?.way === 'storage'})
+      storageStr = localStorage.getItem('${activateWay?.param || 'debugwhatever'}')
+    if (storageStr === 'true'){ showDebug=true };
+  `
 }

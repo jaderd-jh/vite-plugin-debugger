@@ -1,8 +1,7 @@
 import type { InitOptions } from 'eruda'
 import type { HtmlTagDescriptor, IndexHtmlTransformResult, TransformResult } from 'vite'
-import { capitalize, transformCDN } from '../helpers'
+import { capitalize, debugInit, transformCDN } from '../helpers'
 import type { CommonConfig, DebuggerOptions } from '../types'
-import { debugInit } from '../index'
 
 export type ErudaPlugin =
   | 'fps'

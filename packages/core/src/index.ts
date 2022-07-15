@@ -6,25 +6,7 @@ import {
   transformVConsoleImport,
   transformVConsoleOptions,
 } from './plugins'
-import type { ActivateWayConfig, DebuggerOptions } from './types'
-
-export const debugInit = (debug: boolean, activateWay: ActivateWayConfig) => {
-  return `
-    let showDebug=${debug};
-    let storageStr = ''
-    if(${activateWay?.way === 'url'}){
-      let queryStr='';
-      const result = (window.location.href || '').match(new RegExp('[\?\&]${
-        activateWay?.param || 'debugwhatever'
-      }=([^\&]+)', 'i'));
-      if (Array.isArray(result) && result.length > 1) queryStr= result[1];
-      if (queryStr === 'true') localStorage.setItem('${activateWay?.param || 'debugwhatever'}', 'true');
-    }
-    if(${activateWay?.way === 'url' || activateWay?.way === 'storage'})
-      storageStr = localStorage.getItem('${activateWay?.param || 'debugwhatever'}')
-    if (storageStr === 'true'){ showDebug=true };
-  `
-}
+import type { DebuggerOptions } from './types'
 
 export const vDebugger = (options: DebuggerOptions): Plugin => {
   const { eruda, vConsole, local, entry } = options
@@ -33,6 +15,10 @@ export const vDebugger = (options: DebuggerOptions): Plugin => {
 
   if (eruda && vConsole) {
     throw new Error("[vite-plugin-debugger]: You'd better use only one debugger tool at a time.")
+  }
+
+  if (!eruda && !vConsole) {
+    throw new Error('[vite-plugin-debugger]: Which one do you prefer? eruda or vConsole?')
   }
 
   return {

@@ -2,7 +2,10 @@
   "compilerOptions": {
     "moduleResolution": "Node",
     "module": "ESNext",
+    "lib": [
+      "esnext"
+    ],
     "types": ["vite/client"]
   },
-  "include": ["src/**/*"]
+  "include": ["packages/core/src/**/*"]
 }

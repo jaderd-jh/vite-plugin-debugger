@@ -1,10 +1,9 @@
-/// <reference path="../../node_modules/vconsole/dist/vconsole.min.d.ts" />
+/// <reference path="../../../../node_modules/vconsole/dist/vconsole.min.d.ts" />
 
 import type { HtmlTagDescriptor, IndexHtmlTransformResult, TransformResult } from 'vite'
 import type { VConsoleOptions } from 'core/options.interface'
-import { transformCDN } from '../helpers'
+import { debugInit, transformCDN } from '../helpers'
 import type { CommonConfig, DebuggerOptions } from '../types'
-import { debugInit } from '../index'
 
 export interface VConsoleConfig extends CommonConfig {
   /**
