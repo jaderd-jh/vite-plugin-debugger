@@ -27,7 +27,7 @@
     "prepublish": "pnpm build",
     "lint": "eslint . --fix",
     "release": "bumpp package.json --commit --push --tag && pnpm publish --access public --no-git-checks",
-    "postpublish": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md && git commit -am \"chore(docs): update CAHNGELOG.md\" && git push"
+    "postpublish": "conventional-changelog -p angular -i CHANGELOG.md -s -r 2 && git add CHANGELOG.md && git commit -am \"chore(docs): update CHANGELOG.md\" && git push"
   },
   "peerDependencies": {
     "eruda": "^2.4.0",
