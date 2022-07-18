@@ -13,7 +13,6 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.0",
-    "vite-plugin-debugger": "workspace:*",
     "vue-tsc": "^0.38.4"
   }
 }

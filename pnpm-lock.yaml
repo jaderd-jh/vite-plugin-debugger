@@ -36,14 +36,12 @@ importers:
   packages/examples/vue:
     specifiers:
       '@vitejs/plugin-vue': ^3.0.0
-      vite-plugin-debugger: workspace:*
       vue: ^3.2.37
       vue-tsc: ^0.38.4
     dependencies:
       vue: 3.2.37
     devDependencies:
       '@vitejs/plugin-vue': 3.0.0_vue@3.2.37
-      vite-plugin-debugger: link:../../core
       vue-tsc: 0.38.5
 
 packages:
