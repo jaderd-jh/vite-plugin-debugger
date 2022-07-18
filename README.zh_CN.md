@@ -44,7 +44,7 @@ export default defineConfig(({ command, mode }) => ({
       debug: mode !== 'production',
       eruda: {
         // cdn: 'jsdelivr', // 'jsdelivr' | 'unpkg' | 'cdnjs'
-        // src: 'custom CDN URL', 
+        // src: 'custom CDN URL',
         options: {
           tool: ['console', 'elements'],
           useShadowDom: true,
@@ -73,6 +73,9 @@ export default defineConfig(({ command, mode }) => ({
 }))
 ```
 
+使用active工具动态开启eruda，您可以像这样指定激活方法和参数名：
+
+    active: { mode: 'url', param: 'debugwhatever' },
 ⚠ cdnjs 不提供与 eruda 相关的插件，因此您可以像这样指定每个插件的 CDN 源:
 
 ```
@@ -164,6 +167,10 @@ export default defineConfig(({ command, mode }) => ({
   ]
 }))
 ```
+
+使用active配置动态开启vConsole，您可以像这样指定激活方法和参数名：
+
+    active: { mode: 'url', param: 'debugwhatever' },
 
 想了解更多有关vConsole配置，请移至 [vConsole API](https://github.com/Tencent/vConsole/blob/dev/doc/public_properties_methods.md).
 

@@ -1,4 +1,4 @@
-import type { ActivateWayConfig } from '../types'
+import type { ActiveConfig } from '../types'
 
 export type CDN = 'jsdelivr' | 'unpkg' | 'cdnjs'
 
@@ -29,20 +29,20 @@ export const transformCDN = (pkg: string | string[], cdn?: CDN) => {
   return ''
 }
 
-export const debugInit = (debug: boolean, activateWay: ActivateWayConfig) => {
+export const debugInit = (debug: boolean, active: ActiveConfig) => {
   return `
     let showDebug=${debug};
     let storageStr = ''
-    if(${activateWay?.way === 'url'}){
+    if(${active?.mode === 'url'}){
       let queryStr='';
       const result = (window.location.href || '').match(new RegExp('[\?\&]${
-        activateWay?.param || 'debugwhatever'
+        active?.param || 'debugwhatever'
       }=([^\&]+)', 'i'));
       if (Array.isArray(result) && result.length > 1) queryStr= result[1];
-      if (queryStr === 'true') localStorage.setItem('${activateWay?.param || 'debugwhatever'}', 'true');
+      if (queryStr === 'true') localStorage.setItem('${active?.param || 'debugwhatever'}', 'true');
     }
-    if(${activateWay?.way === 'url' || activateWay?.way === 'storage'})
-      storageStr = localStorage.getItem('${activateWay?.param || 'debugwhatever'}')
+    if(${active?.mode === 'url' || active?.mode === 'storage'})
+      storageStr = localStorage.getItem('${active?.param || 'debugwhatever'}')
     if (storageStr === 'true'){ showDebug=true };
   `
 }

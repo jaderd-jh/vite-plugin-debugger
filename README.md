@@ -44,7 +44,7 @@ export default defineConfig(({ command, mode }) => ({
       debug: mode !== 'production',
       eruda: {
         // cdn: 'jsdelivr', // 'jsdelivr' | 'unpkg' | 'cdnjs'
-        // src: 'custom CDN URL', 
+        // src: 'custom CDN URL',
         options: {
           tool: ['console', 'elements'],
           useShadowDom: true,
@@ -73,6 +73,9 @@ export default defineConfig(({ command, mode }) => ({
 }))
 ```
 
+Use active tools to enable eruda dynamically, you can specify activation mode and parameter name like:
+
+    active: { mode: 'url', param: 'debugwhatever' },
 ⚠ cdnjs don't provide eruda related plugins so you can specify every plugin's CDN source like:
 
 ```
@@ -165,6 +168,10 @@ export default defineConfig(({ command, mode }) => ({
   ]
 }))
 ```
+
+Use active tools to enable vConsole dynamically, you can specify activation mode and parameter name like:
+
+    active: { mode: 'url', param: 'debugwhatever' },
 
 For more details about vConsole options, please check
 out [vConsole API](https://github.com/Tencent/vConsole/blob/dev/doc/public_properties_methods.md).

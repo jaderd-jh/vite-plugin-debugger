@@ -15,7 +15,7 @@ export interface VConsoleConfig extends CommonConfig {
 }
 
 export const transformVConsoleOptions = (html: string, opts: DebuggerOptions): IndexHtmlTransformResult => {
-  const { debug, activateWay } = opts
+  const { debug, active } = opts
   const { options, cdn = 'jsdelivr', src } = opts.vConsole
   const tags: HtmlTagDescriptor[] = []
 
@@ -29,7 +29,7 @@ export const transformVConsoleOptions = (html: string, opts: DebuggerOptions): I
 
   tags.push({
     tag: 'script',
-    children: `${debugInit(debug, activateWay)}\n if(showDebug===true){var vConsole = new VConsole(${JSON.stringify(
+    children: `${debugInit(debug, active)}\n if(showDebug===true){var vConsole = new VConsole(${JSON.stringify(
       options || {}
     )})};`,
     injectTo: 'head',
@@ -54,12 +54,12 @@ export const transformVConsoleImport = (
   code: string,
   opts: DebuggerOptions
 ): Promise<TransformResult> | TransformResult => {
-  const { debug, activateWay } = opts
+  const { debug, active } = opts
   const { options = {} } = opts.vConsole
   return {
     code: `/* eslint-disable */;import VConsole from 'vconsole'; ${debugInit(
       debug,
-      activateWay
+      active
     )}\n if(showDebug===true){new VConsole(${JSON.stringify(options)})};/* eslint-enable */${code}`,
     map: null,
   }
