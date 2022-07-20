@@ -35,14 +35,14 @@ export const debugInit = (debug: boolean, active: ActiveConfig) => {
     let storageStr = ''
     if(${active?.mode === 'url'}){
       let queryStr='';
-      const result = (window.location.href || '').match(new RegExp('[\?\&]${
-        active?.param || 'debugwhatever'
-      }=([^\&]+)', 'i'));
+      const result = (window.location.href || '').match(new RegExp('[\?\&]${active?.param}=([^\&]+)', 'i'));
       if (Array.isArray(result) && result.length > 1) queryStr= result[1];
-      if (queryStr === 'true') localStorage.setItem('${active?.param || 'debugwhatever'}', 'true');
+      if (queryStr) localStorage.setItem('${active?.param}', '1');
+      else localStorage.removeItem('${active?.param}')
     }
-    if(${active?.mode === 'url' || active?.mode === 'storage'})
-      storageStr = localStorage.getItem('${active?.param || 'debugwhatever'}')
-    if (storageStr === 'true'){ showDebug=true };
+    if(${active?.mode === 'url' || active?.mode === 'storage'}){
+      storageStr = localStorage.getItem('${active?.param}')
+    }
+    if (storageStr === '1'){ showDebug=true };
   `
 }
