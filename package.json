@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "pnpm -F vite-plugin-debugger dev",
     "dev:vue": "pnpm -F vue dev",
+    "dev:react": "pnpm -F react dev",
     "build:vue": "pnpm -F vue build",
     "preview": "pnpm -F vue preview",
     "build": "pnpm -F vite-plugin-debugger build",
