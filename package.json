@@ -14,7 +14,8 @@
     "test": "playwright test",
     "prepublish": "pnpm -F vite-plugin-debugger build",
     "lint": "eslint . --fix",
-    "release": "pnpm -F vite-plugin-debugger release"
+    "release": "pnpm -F vite-plugin-debugger release",
+    "postinstall": "pnpm build"
   },
   "devDependencies": {
     "@jhqn/eslint-config-ts": "^0.0.30",
