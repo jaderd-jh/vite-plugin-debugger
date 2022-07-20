@@ -29,20 +29,29 @@ export const transformCDN = (pkg: string | string[], cdn?: CDN) => {
   return ''
 }
 
-export const debugInit = (debug: boolean, active: ActiveConfig) => {
+export const debugInit = (debug: boolean, active?: ActiveConfig) => {
   return `
-    let showDebug=${debug};
+    const activeConfig = ${!!active}
+    const activePriority = ${active?.options?.priority}
+    let showDebug = false;
     let storageStr = ''
     if(${active?.mode === 'url'}){
       let queryStr='';
       const result = (window.location.href || '').match(new RegExp('[\?\&]${active?.param}=([^\&]+)', 'i'));
-      if (Array.isArray(result) && result.length > 1) queryStr= result[1];
-      if (queryStr) localStorage.setItem('${active?.param}', '1');
-      else localStorage.removeItem('${active?.param}')
+      if (Array.isArray(result) && result.length > 1) queryStr = result[1];
+      if (queryStr) localStorage.setItem('${active?.param}', queryStr);
     }
     if(${active?.mode === 'url' || active?.mode === 'storage'}){
       storageStr = localStorage.getItem('${active?.param}')
     }
-    if (storageStr === '1'){ showDebug=true };
+    if(activeConfig){
+      if(activePriority){
+        if (storageStr){ showDebug = true };
+      } else {
+        if (${debug} && storageStr){ showDebug = true };
+      }
+    } else {
+      showDebug = ${debug}
+    }
   `
 }

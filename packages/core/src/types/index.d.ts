@@ -12,7 +12,18 @@ export interface CommonConfig {
   src?: string
 }
 
+export interface ActiveOptions {
+  /**
+   * priority between debug and active
+   */
+  priority: boolean
+}
+
 export interface ActiveConfig {
+  /**
+   * active options
+   */
+  options?: ActiveOptions
   /**
    * use url or storage
    */
@@ -20,7 +31,7 @@ export interface ActiveConfig {
   /**
    * parameter name
    */
-  param?: string
+  param: string
 }
 export interface DebuggerOptions {
   /**
