@@ -74,12 +74,15 @@ export default defineConfig(({ command, mode }) => ({
 ```
 
 Use active tools to enable eruda forcibly, you can specify activation mode and parameter name like:
-
-    active: {
-       options: { priority: true }
-       mode: 'url', 
-       param: 'debugwhatever',
-    }
+```typescript
+const config = {
+  active: {
+    override: true, // true if you want to override debug option
+    mode: 'url',
+    param: 'debugwhatever',
+  }
+}
+```
 ⚠ cdnjs don't provide eruda related plugins so you can specify every plugin's CDN source like:
 
 ```

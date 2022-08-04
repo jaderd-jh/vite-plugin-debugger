@@ -12,18 +12,11 @@ export interface CommonConfig {
   src?: string
 }
 
-export interface ActiveOptions {
-  /**
-   * priority between debug and active
-   */
-  priority: boolean
-}
-
 export interface ActiveConfig {
   /**
-   * active options
+   * define is active override debug
    */
-  options?: ActiveOptions
+  override?: boolean
   /**
    * use url or storage
    */

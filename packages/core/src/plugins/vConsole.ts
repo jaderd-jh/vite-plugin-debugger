@@ -35,7 +35,7 @@ export const transformVConsoleOptions = (html: string, opts: DebuggerOptions): I
     injectTo: 'head',
   })
 
-  if (debug === true || debug === false) {
+  if (debug !== undefined) {
     return {
       html,
       tags,

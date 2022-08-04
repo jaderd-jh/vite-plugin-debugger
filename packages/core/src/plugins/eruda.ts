@@ -81,7 +81,7 @@ export const transformErudaOptions = (html: string, opts: DebuggerOptions): Inde
     injectTo: 'head',
   })
 
-  if (debug === true || debug === false) {
+  if (debug !== undefined) {
     return {
       html,
       tags,

@@ -32,7 +32,7 @@ export const transformCDN = (pkg: string | string[], cdn?: CDN) => {
 export const debugInit = (debug: boolean, active?: ActiveConfig) => {
   return `
     const activeConfig = ${!!active}
-    const activePriority = ${active?.options?.priority}
+    const activePriority = ${active?.override}
     let showDebug = false;
     let storageStr = ''
     if(${active?.mode === 'url'}){

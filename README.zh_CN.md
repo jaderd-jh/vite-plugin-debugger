@@ -75,11 +75,15 @@ export default defineConfig(({ command, mode }) => ({
 
 使用active工具强制开启eruda，您可以像这样指定激活方法和参数名：
 
-    active: {
-       options: { priority: true }
-       mode: 'url', 
-       param: 'debugwhatever',
-    }
+```typescript
+const config = {
+  active: {
+    override: true, // 设置为true以覆盖debug选项
+    mode: 'url',
+    param: 'debugwhatever',
+  }
+}
+```
 ⚠ cdnjs 不提供与 eruda 相关的插件，因此您可以像这样指定每个插件的 CDN 源:
 
 ```
