@@ -1,3 +1,15 @@
+## [0.0.8](https://github.com/jaderd-jh/vite-plugin-debugger/compare/v0.0.7...v0.0.8) (2022-08-04)
+
+
+### Features
+
+* a example of active debugger ([4d0b700](https://github.com/jaderd-jh/vite-plugin-debugger/commit/4d0b700f4b39c5596eff48663d8ea288a01b7408))
+* active options about priority ([8c9ae31](https://github.com/jaderd-jh/vite-plugin-debugger/commit/8c9ae313c3a9f412dbc123f57423c49ffd7c9c28))
+* not specify the value of param ([a8b83b9](https://github.com/jaderd-jh/vite-plugin-debugger/commit/a8b83b97c2bf347cf25555cff9cdf7220064cad9))
+* simplify active options ([e896fe6](https://github.com/jaderd-jh/vite-plugin-debugger/commit/e896fe619754b316f7e4a3f28730d172ac6e26a6))
+
+
+
 ## [0.0.7](https://github.com/jaderd-jh/vite-plugin-debugger/compare/v0.0.6...v0.0.7) (2022-07-18)
 
 
