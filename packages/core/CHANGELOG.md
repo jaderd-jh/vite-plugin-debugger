@@ -1,3 +1,7 @@
+## [0.0.10](https://github.com/jaderd-jh/vite-plugin-debugger/compare/v0.0.9...v0.0.10) (2022-12-28)
+
+
+
 ## [0.0.9](https://github.com/jaderd-jh/vite-plugin-debugger/compare/v0.0.8...v0.0.9) (2022-12-07)
 
 
