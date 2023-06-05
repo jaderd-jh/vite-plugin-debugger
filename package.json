@@ -23,7 +23,7 @@
     "@jhqn/eslint-config-ts": "^0.4.0",
     "@playwright/test": "^1.30.0",
     "@types/node": "^18.11.18",
-    "bumpp": "^8.2.1",
+    "bumpp": "^9.0.0",
     "conventional-changelog-cli": "^2.2.2",
     "eruda": "^2.11.2",
     "eslint": "^8.33.0",
