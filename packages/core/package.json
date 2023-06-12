@@ -30,7 +30,7 @@
     "postpublish": "conventional-changelog -p angular -i CHANGELOG.md -s -r 2 && git add CHANGELOG.md && git commit -am \"chore(docs): update CHANGELOG.md\" && git push"
   },
   "peerDependencies": {
-    "eruda": "^2.4.0",
+    "eruda": "^3.0.0",
     "vconsole": "^3.14.0",
     "vite": "^2.0.0 || ^3.0.0 || ^4.0.0"
   },
