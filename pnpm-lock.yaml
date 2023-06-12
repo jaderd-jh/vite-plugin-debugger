@@ -9,7 +9,7 @@ importers:
       '@types/node': ^18.11.18
       bumpp: ^8.2.1
       conventional-changelog-cli: ^2.2.2
-      eruda: ^2.11.2
+      eruda: ^3.0.0
       eslint: ^8.33.0
       tsup: ^6.5.0
       typescript: ^4.9.5
@@ -22,7 +22,7 @@ importers:
       '@types/node': 18.11.18
       bumpp: 8.2.1
       conventional-changelog-cli: 2.2.2
-      eruda: 2.11.2
+      eruda: 3.0.0
       eslint: 8.33.0
       tsup: 6.5.0_typescript@4.9.5
       typescript: 4.9.5
@@ -1803,8 +1803,8 @@ packages:
       is-arrayish: 0.2.1
     dev: true
 
-  /eruda/2.11.2:
-    resolution: {integrity: sha512-WN/o7sKlkOwGUDju0hCwfqvCmGiZFzWAbxT0LF+TA/kuJmcBPoNr0OMrnoEoKJWQqrVzVlZpLON4vegpsoSaPQ==}
+  /eruda/3.0.0:
+    resolution: {integrity: sha512-6L8A8aBHOQv0rqeBlNdJEl/hl6OAdLVRtJlVmBIlIJ6Fe1a92HFXO58jHLC0vFyuKV0deTjYjRaWwLo9lJ9K9A==}
     dev: true
 
   /es-abstract/1.21.1:
