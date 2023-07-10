@@ -20,7 +20,7 @@
     "update": "pnpm up -i --latest -r"
   },
   "devDependencies": {
-    "@jhqn/eslint-config-ts": "^0.4.0",
+    "@jhqn/eslint-config-ts": "^0.5.0",
     "@playwright/test": "^1.35.0",
     "@types/node": "^18.11.18",
     "bumpp": "^9.1.1",
