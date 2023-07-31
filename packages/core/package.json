@@ -31,7 +31,7 @@
     "postpublish": "conventional-changelog -p angular -i CHANGELOG.md -s -r 2 && git add CHANGELOG.md && git commit -am \"chore(docs): update CHANGELOG.md\" && git push"
   },
   "devDependencies": {
-    "publint": "^0.1.12"
+    "publint": "^0.2.0"
   },
   "peerDependencies": {
     "eruda": "^3.0.0",

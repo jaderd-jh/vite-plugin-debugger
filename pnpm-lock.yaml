@@ -58,8 +58,8 @@ importers:
         version: 4.3.9(@types/node@18.11.18)
     devDependencies:
       publint:
-        specifier: ^0.1.12
-        version: 0.1.12
+        specifier: ^0.2.0
+        version: 0.2.0
 
   packages/examples/react:
     dependencies:
@@ -4283,8 +4283,8 @@ packages:
       sisteransi: 1.0.5
     dev: true
 
-  /publint@0.1.12:
-    resolution: {integrity: sha512-8LxkO430t/SOhUl0qXQWdXq34m6oyLcPhE4Kc8eXhOEnB82vCHcShPQ2kH53n/ksC7jWdRWDP7MPGxKJbntQfg==}
+  /publint@0.2.0:
+    resolution: {integrity: sha512-h8lxdjhQjpDw+A4BgY4sE7Z4CU3x5tCGGpERVdKGDQmWMtr1P7kvptJS2P10HhmNnS7Yeny37zfQE5+xRZ6nig==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
