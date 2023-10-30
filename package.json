@@ -22,7 +22,7 @@
   "devDependencies": {
     "@jhqn/eslint-config-ts": "^0.6.0",
     "@playwright/test": "^1.35.0",
-    "@types/node": "^18.11.18",
+    "@types/node": "^20.0.0",
     "bumpp": "^9.1.1",
     "conventional-changelog-cli": "^3.0.0",
     "eruda": "^3.0.0",
