@@ -29,9 +29,6 @@
     "prepublishOnly": "publint",
     "release": "bumpp"
   },
-  "devDependencies": {
-    "publint": "^0.2.5"
-  },
   "peerDependencies": {
     "eruda": "^3.0.0",
     "vconsole": "^3.14.0",
