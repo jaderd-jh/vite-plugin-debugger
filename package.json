@@ -14,13 +14,14 @@
     "build:vue": "pnpm -F vue build",
     "preview": "pnpm -F vue preview",
     "build": "pnpm -F vite-plugin-debugger build",
-    "test": "pnpm exec playwright install && playwright test",
+    "test": "playwright test",
     "prepublish": "pnpm -F vite-plugin-debugger build",
     "publint": "pnpm -r publint",
     "lint": "eslint . --fix",
     "release": "pnpm -F vite-plugin-debugger release",
     "postinstall": "pnpm build",
-    "update": "pnpm up -i --latest -r"
+    "update": "pnpm up -i --latest -r",
+    "prepare": "npx playwright install"
   },
   "devDependencies": {
     "@jhqn/eslint-config-ts": "^0.6.3",
