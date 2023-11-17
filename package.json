@@ -14,7 +14,7 @@
     "build:vue": "pnpm -F vue build",
     "preview": "pnpm -F vue preview",
     "build": "pnpm -F vite-plugin-debugger build",
-    "test": "playwright test",
+    "test": "pnpm exec playwright install && playwright test",
     "prepublish": "pnpm -F vite-plugin-debugger build",
     "publint": "pnpm -r publint",
     "lint": "eslint . --fix",
