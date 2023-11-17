@@ -2,7 +2,7 @@
   "name": "vite-plugin-debugger-monorepo",
   "type": "module",
   "version": "0.0.0",
-  "private": false,
+  "private": true,
   "packageManager": "pnpm@8.10.5",
   "description": "A vite plugin provide the debugger tools for mobile devices.",
   "author": "jade-gjz",
