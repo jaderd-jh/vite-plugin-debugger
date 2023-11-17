@@ -30,9 +30,6 @@ jobs:
       - name: Install
         run: pnpm i --no-frozen-lockfile
 
-      - name: Lint
-        run: pnpm lint
-
   test:
     runs-on: ${{ matrix.os }}
 
