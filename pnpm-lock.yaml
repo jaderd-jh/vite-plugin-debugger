@@ -26,6 +26,9 @@ importers:
       eslint:
         specifier: ^8.53.0
         version: 8.53.0
+      publint:
+        specifier: ^0.2.5
+        version: 0.2.5
       tsup:
         specifier: ^7.3.0
         version: 7.3.0(typescript@5.2.2)
