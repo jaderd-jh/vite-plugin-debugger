@@ -88,7 +88,7 @@ export const transformErudaOptions = (html: string, opts: DebuggerOptions): Inde
     }
   }
 
-  if (!import.meta.env.PROD) {
+  if (process.env.NODE_ENV !== 'production') {
     return {
       html,
       tags,

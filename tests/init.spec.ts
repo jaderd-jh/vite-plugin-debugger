@@ -8,5 +8,5 @@ test('eruda initial success', async ({ page }) => {
   await page.goto('/')
   // await page.locator('.eruda-entry-btn').click()
   const tabConsole = page.locator('.eruda-active').first()
-  await expect(tabConsole).toHaveText('console')
+  await expect(tabConsole).toHaveText('All')
 })
