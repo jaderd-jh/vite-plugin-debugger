@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "moduleResolution": "Node",
-    "module": "ESNext",
     "lib": ["esnext"],
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "types": ["vite/client"]
   },
   "include": ["packages/core/src/**/*"]

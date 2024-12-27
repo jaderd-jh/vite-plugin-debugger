@@ -15,13 +15,14 @@
     "preview": "pnpm -F vue preview",
     "build": "pnpm -F vite-plugin-debugger build",
     "test": "playwright test",
+    "pre-commit": "lint-staged",
     "prepublish": "pnpm -F vite-plugin-debugger build",
     "publint": "pnpm -r publint",
     "lint": "eslint . --fix",
     "release": "pnpm -F vite-plugin-debugger release",
     "postinstall": "pnpm build",
     "update": "pnpm up -i --latest -r",
-    "prepare": "npx playwright install"
+    "prepare": "npx simple-git-hooks && npx playwright install --with-deps"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
