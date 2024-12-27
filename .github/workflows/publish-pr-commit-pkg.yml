@@ -3,12 +3,12 @@ name: Publish PR Commit Pkg
 on:
   push:
     branches:
-      - master
+      - main
     tags:
       - '!**'
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -22,7 +22,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: lts/jod
-          cache: 'pnpm'
+          cache: pnpm
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
