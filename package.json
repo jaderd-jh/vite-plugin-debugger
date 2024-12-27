@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@8.12.1",
+  "packageManager": "pnpm@9.15.1",
   "description": "A vite plugin provide the debugger tools for mobile devices.",
   "author": "jade-gjz",
   "license": "MIT",
@@ -24,17 +24,33 @@
     "prepare": "npx playwright install"
   },
   "devDependencies": {
-    "@jhqn/eslint-config-ts": "^0.6.3",
-    "@playwright/test": "^1.40.0",
-    "@types/node": "^20.9.1",
-    "bumpp": "^9.2.0",
-    "eruda": "^3.0.1",
-    "eslint": "^8.53.0",
-    "publint": "^0.2.5",
-    "tsup": "^8.0.0",
-    "typescript": "^5.2.2",
+    "@biomejs/biome": "^1.9.4",
+    "@jhqn/eslint-config": "^0.7.24",
+    "@playwright/test": "^1.49.1",
+    "@types/node": "^22.10.2",
+    "bumpp": "^9.9.2",
+    "eruda": "^3.4.1",
+    "eslint": "^9.17.0",
+    "eslint-plugin-oxlint": "^0.15.2",
+    "lint-staged": "^15.2.11",
+    "oxlint": "^0.15.3",
+    "publint": "^0.2.12",
+    "simple-git-hooks": "^2.11.1",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
     "vconsole": "^3.15.1",
-    "vite": "^5.0.0",
+    "vite": "^6.0.6",
     "vite-plugin-debugger": "workspace:*"
-  }
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm pre-commit"
+  },
+  "lint-staged": {
+    "*": [
+      "oxlint --quiet --fix --ignore-path .lintignore",
+      "eslint --cache --quiet --fix",
+      "biome check --write --no-errors-on-unmatched"
+    ]
+  },
+  "$schema": "https://json.schemastore.org/package.json"
 }
