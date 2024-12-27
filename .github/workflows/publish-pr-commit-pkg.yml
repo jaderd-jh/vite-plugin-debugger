@@ -1,0 +1,37 @@
+name: Publish PR Commit Pkg
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - '!**'
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: ${{ github.repository == 'jaderd-jh/vite-plugin-debugger' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/jod
+          cache: 'pnpm'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm build
+
+      - name: Publish
+        run: pnpx pkg-pr-new publish --pnpm './packages/*'
