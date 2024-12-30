@@ -1,5 +1,4 @@
-import type { CDN } from '../helpers'
-import type { ErudaConfig, VConsoleConfig } from '../plugins'
+export type CDN = 'jsdelivr' | 'unpkg' | 'cdnjs'
 
 export interface CommonConfig {
   /**
@@ -26,7 +25,8 @@ export interface ActiveConfig {
    */
   param: string
 }
-export interface DebuggerOptions {
+
+export interface SharedConfig {
   /**
    * debug or not
    */
@@ -43,12 +43,4 @@ export interface DebuggerOptions {
    * if local is true, use this to specify the path
    */
   entry?: string | string[]
-  /**
-   * eruda config
-   */
-  eruda?: ErudaConfig
-  /**
-   * vConsole config
-   */
-  vConsole?: VConsoleConfig
 }

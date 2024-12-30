@@ -3,7 +3,8 @@
     "lib": ["esnext"],
     "module": "ESNext",
     "moduleResolution": "Node",
-    "types": ["vite/client"]
+    "types": ["vite/client"],
+    "allowSyntheticDefaultImports": true
   },
   "include": ["packages/core/src/**/*"]
 }

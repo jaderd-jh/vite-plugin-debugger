@@ -1,7 +1,15 @@
 import type { InitOptions } from 'eruda'
-import type { HtmlTagDescriptor, IndexHtmlTransformResult, TransformResult } from 'vite'
+import type { CommonConfig, SharedConfig } from '../types'
+import process from 'node:process'
+import { isPackageExists } from 'local-pkg'
+import {
+  type HtmlTagDescriptor,
+  type IndexHtmlTransformResult,
+  normalizePath,
+  type Plugin,
+  type TransformResult,
+} from 'vite'
 import { capitalize, debugInit, transformCDN } from '../helpers'
-import type { CommonConfig, DebuggerOptions } from '../types'
 
 export type ErudaPlugin =
   | 'fps'
@@ -19,20 +27,27 @@ export interface ErudaConfig extends CommonConfig {
   /**
    * eruda options
    *
-   * see also https://github.com/liriliri/eruda/blob/master/doc/API.md
+   * @see https://github.com/liriliri/eruda/blob/master/doc/API.md
    */
   options?: InitOptions
   /**
    * eruda plugins
    *
-   * see also https://github.com/liriliri/eruda#plugins
+   * @see https://github.com/liriliri/eruda#plugins
    */
   plugins?: ErudaPlugin[] | { name: ErudaPlugin; src: string }[]
 }
 
-export const transformErudaOptions = (html: string, opts: DebuggerOptions): IndexHtmlTransformResult => {
+export interface ErudaDebuggerOptions extends SharedConfig {
+  /**
+   * eruda config
+   */
+  config?: ErudaConfig
+}
+
+export const transformErudaOptions = (html: string, opts: ErudaDebuggerOptions): IndexHtmlTransformResult => {
   const { debug, active } = opts
-  const { options, plugins, cdn = 'jsdelivr', src } = opts.eruda
+  const { options, plugins, cdn = 'jsdelivr', src } = opts.config
 
   const tags: HtmlTagDescriptor[] = []
 
@@ -98,10 +113,10 @@ export const transformErudaOptions = (html: string, opts: DebuggerOptions): Inde
 
 export const transformErudaImport = (
   code: string,
-  opts: DebuggerOptions
+  opts: ErudaDebuggerOptions
 ): Promise<TransformResult> | TransformResult => {
   const { debug, active } = opts
-  const { options = {}, plugins } = opts.eruda
+  const { options = {}, plugins } = opts.config
 
   let importCode = "import eruda from 'eruda';"
   let erudaScript = `eruda.init(${JSON.stringify(options)});`
@@ -121,5 +136,32 @@ export const transformErudaImport = (
       active
     )}if(showDebug===true){${erudaScript}}\n/* eslint-enable */\n${code}`,
     map: null,
+  }
+}
+
+export const vDebugger = (options: ErudaDebuggerOptions): Plugin => {
+  const { local = isPackageExists('eruda'), entry } = options
+
+  const entryPath = entry ? (Array.isArray(entry) ? entry : [entry]).map(path => normalizePath(path)) : []
+
+  // use installed lib first
+  if (local) {
+    return {
+      name: 'vite-plugin-debugger',
+      transform(code: string, id: string): Promise<TransformResult> | TransformResult {
+        if (entryPath.includes(id)) {
+          return transformErudaImport(code, options)
+        }
+
+        return { code, map: null }
+      },
+    }
+  }
+
+  return {
+    name: 'vite-plugin-debugger',
+    transformIndexHtml(html: string): IndexHtmlTransformResult {
+      return transformErudaOptions(html, options)
+    },
   }
 }

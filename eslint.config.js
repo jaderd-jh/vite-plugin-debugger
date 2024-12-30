@@ -9,6 +9,7 @@ export default jhqn(
         'style/indent': 'off',
         'style/multiline-ternary': 'off',
         'style/operator-linebreak': 'off',
+        'style/jsx-one-expression-per-line': 'off',
         'style/quotes': 'off',
       },
     },

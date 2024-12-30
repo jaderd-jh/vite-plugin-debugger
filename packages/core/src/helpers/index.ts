@@ -1,6 +1,4 @@
-import type { ActiveConfig } from '../types'
-
-export type CDN = 'jsdelivr' | 'unpkg' | 'cdnjs'
+import type { ActiveConfig, CDN } from '../types'
 
 export const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 
@@ -19,7 +17,7 @@ export const transformCDN = (pkg: string | string[], cdn?: CDN) => {
   if (cdn === 'cdnjs') {
     if (!Array.isArray(pkg)) {
       if (pkg === 'eruda') {
-        return 'https://cdnjs.cloudflare.com/ajax/libs/eruda/3.0.1/eruda.min.js'
+        return 'https://cdnjs.cloudflare.com/ajax/libs/eruda/3.4.1/eruda.min.js'
       }
       throw new Error(`[vite-plugin-debugger]: ${cdn} only support eruda without its plugins.`)
     }
@@ -37,7 +35,7 @@ export const debugInit = (debug: boolean, active?: ActiveConfig) => {
     let storageStr = ''
     if(${active?.mode === 'url'}){
       let queryStr='';
-      const result = (window.location.href || '').match(new RegExp('[\?\&]${active?.param}=([^\&]+)', 'i'));
+      const result = (window.location.href || '').match(new RegExp('[?&]${active?.param}=([^&]+)', 'i'));
       if (Array.isArray(result) && result.length > 1) queryStr = result[1];
       if (queryStr) localStorage.setItem('${active?.param}', queryStr);
     }

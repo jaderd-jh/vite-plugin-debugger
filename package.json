@@ -3,17 +3,17 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@9.15.1",
+  "packageManager": "pnpm@9.15.2",
   "description": "A vite plugin provide the debugger tools for mobile devices.",
   "author": "jade-gjz",
   "license": "MIT",
   "scripts": {
     "dev": "pnpm -F vite-plugin-debugger dev",
-    "dev:vue": "pnpm -F vue dev",
-    "dev:react": "pnpm -F react dev",
-    "build:vue": "pnpm -F vue build",
-    "preview": "pnpm -F vue preview",
     "build": "pnpm -F vite-plugin-debugger build",
+    "dev:react": "pnpm -F react dev",
+    "dev:vue": "pnpm -F vue dev",
+    "build:vue": "pnpm -F vue build",
+    "preview:vue": "pnpm -F vue preview",
     "test": "playwright test",
     "pre-commit": "lint-staged",
     "prepublish": "pnpm -F vite-plugin-debugger build",
@@ -37,11 +37,9 @@
     "oxlint": "^0.15.3",
     "publint": "^0.2.12",
     "simple-git-hooks": "^2.11.1",
-    "tsup": "^8.3.5",
     "typescript": "^5.7.2",
     "vconsole": "^3.15.1",
-    "vite": "^6.0.6",
-    "vite-plugin-debugger": "workspace:*"
+    "vite": "^6.0.6"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm pre-commit"

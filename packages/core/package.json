@@ -1,33 +1,41 @@
 {
   "name": "vite-plugin-debugger",
+  "type": "module",
   "version": "0.2.0",
   "description": "A vite plugin provide the debugger tools for mobile devices.",
   "author": "jade-gjz",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jaderd-jh/vite-plugin-debugger.git"
+    "url": "git+https://github.com/jaderd-jh/vite-plugin-debugger.git"
   },
-  "keywords": [
-    "vite",
-    "debugger",
-    "plugin",
-    "eruda",
-    "vConsole",
-    "mobile"
-  ],
-  "main": "dist/index.js",
+  "keywords": ["vite", "debugger", "plugin", "eruda", "vConsole", "mobile"],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./eruda": {
+      "types": "./dist/eruda.d.ts",
+      "import": "./dist/eruda.js"
+    },
+    "./vconsole": {
+      "types": "./dist/vconsole.d.ts",
+      "import": "./dist/vconsole.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup",
     "prepublish": "pnpm build",
     "lint": "eslint . --fix",
     "prepublishOnly": "publint",
-    "release": "bumpp"
+    "release": "bumpp",
+    "publint": "npx publint"
   },
   "peerDependencies": {
     "eruda": "^3.0.0",
@@ -41,5 +49,9 @@
     "vconsole": {
       "optional": true
     }
+  },
+  "devDependencies": {
+    "local-pkg": "^0.5.1",
+    "tsup": "^8.3.5"
   }
 }
