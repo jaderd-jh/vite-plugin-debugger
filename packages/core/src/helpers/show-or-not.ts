@@ -6,10 +6,10 @@ if (active?.mode === 'url') {
   let queryStr = ''
   const result = window.location.href.match(new RegExp(`[?&]${active.param}=([^&]+)`, 'i'))
   if (Array.isArray(result) && result.length > 1) queryStr = result[1]
-  if (queryStr) localStorage.setItem(active.param, queryStr)
+  if (queryStr) sessionStorage.setItem(active.param, queryStr)
 }
 if (active?.mode === 'url' || active?.mode === 'storage') {
-  storageStr = localStorage.getItem(active.param)
+  storageStr = sessionStorage.getItem(active.param)
 }
 if (active) {
   if (active.override) {
