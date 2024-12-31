@@ -1,12 +1,13 @@
 import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
-import { vDebugger } from 'vite-plugin-debugger/eruda'
+import vDebugger from 'vite-plugin-debugger/eruda'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
     vDebugger({
+      local: false,
       debug: true,
       config: {
         options: {
