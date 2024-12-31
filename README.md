@@ -14,9 +14,9 @@ A vite plugin provide the debugger tools for mobile devices.
 
 ## Install
 
-**node version:** >=14.0.0
+**node version:** >=20.0.0
 
-**vite version:** >=2.0.0
+**vite version:** >=6.0.0
 
 ```bash
 pnpm add vite-plugin-debugger -D
@@ -33,17 +33,14 @@ npm i vite-plugin-debugger -D
 we use eruda with CDN by default since it's unpacked size is 2.38 MB.
 
 ```typescript
-import { fileURLToPath } from 'url'
-import vDebugger from 'vite-plugin-debugger'
-
-const resolve = (dir: string) => fileURLToPath(new URL(dir, import.meta.url))
+import vDebugger from 'vite-plugin-debugger/eruda'
 
 export default defineConfig(({ command, mode }) => ({
   plugins: [
     vDebugger({
       debug: mode !== 'production',
       eruda: {
-        // cdn: 'jsdelivr', // 'jsdelivr' | 'unpkg' | 'cdnjs'
+        // cdn: 'jsdelivr', // 'jsdelivr' | 'unpkg' | 'cdnjs' | 'staticfile'
         // src: 'custom CDN URL',
         options: {
           tool: ['console', 'elements'],
@@ -55,18 +52,6 @@ export default defineConfig(({ command, mode }) => ({
             theme: 'Dark',
           },
         },
-        plugins: [
-          'fps',
-          'features',
-          'timing',
-          'memory',
-          'code',
-          'benchmark',
-          'dom',
-          'orientation',
-          'touches',
-          // 'geolocation',
-        ],
       },
     })
   ]
@@ -83,17 +68,6 @@ const config = {
   }
 }
 ```
-⚠ cdnjs don't provide eruda related plugins so you can specify every plugin's CDN source like:
-
-```
-        plugins: [
-          {
-            name: 'fps',
-            src: 'https://cdn.jsdelivr.net/npm/eruda-fps',
-          },
-       // ...
-        ],
-```
 
 For more details about eruda options, please check
 out [eruda API](https://github.com/liriliri/eruda/blob/master/doc/API.md).
@@ -107,13 +81,11 @@ yarn add eruda -D
 # or
 npm i eruda -D
 
-# And some optional plugins
-pnpm[yarn|npm] add eruda-fps eruda-features eruda-timing eruda-memory eruda-code eruda-benchmark eruda-dom eruda-orientation eruda-touches eruda-geolocation -D
 ```
 
 ```typescript
-import { fileURLToPath } from 'url'
-import vDebugger from 'vite-plugin-debugger'
+import { fileURLToPath } from 'node:url'
+import vDebugger from 'vite-plugin-debugger/eruda'
 
 const resolve = (dir: string) => fileURLToPath(new URL(dir, import.meta.url))
 
@@ -122,7 +94,7 @@ export default defineConfig(({ command, mode }) => ({
     vDebugger({
       debug: mode !== 'production',
       local: true,
-      entry: resolve('src/main.ts'),// vue or src/main.tsx for react
+      entry: resolve('src/main.ts'), // vue or src/main.tsx for react
       eruda: {
         options: {
           tool: ['console', 'elements'],
@@ -134,18 +106,6 @@ export default defineConfig(({ command, mode }) => ({
             theme: 'Dark',
           },
         },
-        plugins: [
-          'fps',
-          'features',
-          'timing',
-          'memory',
-          'code',
-          'benchmark',
-          'dom',
-          'orientation',
-          'touches',
-          // 'geolocation',
-        ],
       }
     })
   ]
@@ -157,10 +117,7 @@ export default defineConfig(({ command, mode }) => ({
 we use vConsole with CDN by default since it's unpacked size is 344 kB.
 
 ```typescript
-import { fileURLToPath } from 'url'
-import vDebugger from 'vite-plugin-debugger'
-
-const resolve = (dir: string) => fileURLToPath(new URL(dir, import.meta.url))
+import vDebugger from 'vite-plugin-debugger/vconsole'
 
 export default defineConfig(({ command, mode }) => ({
   plugins: [
@@ -194,8 +151,8 @@ npm i vconsole -D
 ```
 
 ```typescript
-import { fileURLToPath } from 'url'
-import vDebugger from 'vite-plugin-debugger'
+import { fileURLToPath } from 'node:url'
+import vDebugger from 'vite-plugin-debugger/vconsole'
 
 const resolve = (dir: string) => fileURLToPath(new URL(dir, import.meta.url))
 
@@ -204,7 +161,7 @@ export default defineConfig(({ command, mode }) => ({
     vDebugger({
       debug: mode !== 'production',
       local: true,
-      entry: resolve('src/main.ts'),// vue or src/main.tsx for react
+      entry: resolve('src/main.ts'), // vue or src/main.tsx for react
       vConsole: {
         options: {
           theme: 'dark',

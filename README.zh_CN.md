@@ -14,9 +14,9 @@
 
 ## 安装
 
-**node 版本:** >=14.0.0
+**node 版本:** >=20.0.0
 
-**vite 版本:** >=2.0.0
+**vite 版本:** >=6.0.0
 
 ```bash
 pnpm add vite-plugin-debugger -D
@@ -33,10 +33,7 @@ npm i vite-plugin-debugger -D
 由于eruda的未打包大小有2.38MB,所以我们推荐默认使用CDN方式引入
 
 ```typescript
-import { fileURLToPath } from 'url'
-import vDebugger from 'vite-plugin-debugger'
-
-const resolve = (dir: string) => fileURLToPath(new URL(dir, import.meta.url))
+import vDebugger from 'vite-plugin-debugger/eruda'
 
 export default defineConfig(({ command, mode }) => ({
   plugins: [
@@ -55,18 +52,6 @@ export default defineConfig(({ command, mode }) => ({
             theme: 'Dark',
           },
         },
-        plugins: [
-          'fps',
-          'features',
-          'timing',
-          'memory',
-          'code',
-          'benchmark',
-          'dom',
-          'orientation',
-          'touches',
-          // 'geolocation',
-        ],
       },
     })
   ]
@@ -84,17 +69,6 @@ const config = {
   }
 }
 ```
-⚠ cdnjs 不提供与 eruda 相关的插件，因此您可以像这样指定每个插件的 CDN 源:
-
-```
-        plugins: [
-          {
-            name: 'fps',
-            src: 'https://cdn.jsdelivr.net/npm/eruda-fps',
-          },
-       // ...
-        ],
-```
 
 想了解更多有关eruda配置，请移至 [eruda API](https://github.com/liriliri/eruda/blob/master/doc/API.md).
 
@@ -107,13 +81,11 @@ yarn add eruda -D
 # or
 npm i eruda -D
 
-# And some optional plugins
-pnpm[yarn|npm] add eruda-fps eruda-features eruda-timing eruda-memory eruda-code eruda-benchmark eruda-dom eruda-orientation eruda-touches eruda-geolocation -D
 ```
 
 ```typescript
-import { fileURLToPath } from 'url'
-import vDebugger from 'vite-plugin-debugger'
+import { fileURLToPath } from 'node:url'
+import vDebugger from 'vite-plugin-debugger/eruda'
 
 const resolve = (dir: string) => fileURLToPath(new URL(dir, import.meta.url))
 
@@ -122,7 +94,7 @@ export default defineConfig(({ command, mode }) => ({
     vDebugger({
       debug: mode !== 'production',
       local: true,
-      entry: resolve('src/main.ts'),// vue or src/main.tsx for react
+      entry: resolve('src/main.ts'), // vue or src/main.tsx for react
       eruda: {
         options: {
           tool: ['console', 'elements'],
@@ -134,18 +106,6 @@ export default defineConfig(({ command, mode }) => ({
             theme: 'Dark',
           },
         },
-        plugins: [
-          'fps',
-          'features',
-          'timing',
-          'memory',
-          'code',
-          'benchmark',
-          'dom',
-          'orientation',
-          'touches',
-          // 'geolocation',
-        ],
       }
     })
   ]
@@ -157,10 +117,7 @@ export default defineConfig(({ command, mode }) => ({
 由于vConsole的未打包大小有344kb,所以我们推荐默认使用CDN方式引入
 
 ```typescript
-import { fileURLToPath } from 'url'
-import vDebugger from 'vite-plugin-debugger'
-
-const resolve = (dir: string) => fileURLToPath(new URL(dir, import.meta.url))
+import vDebugger from 'vite-plugin-debugger/vconsole'
 
 export default defineConfig(({ command, mode }) => ({
   plugins: [
@@ -193,8 +150,8 @@ npm i vconsole -D
 ```
 
 ```typescript
-import { fileURLToPath } from 'url'
-import vDebugger from 'vite-plugin-debugger'
+import { fileURLToPath } from 'node:url'
+import vDebugger from 'vite-plugin-debugger/vconsole'
 
 const resolve = (dir: string) => fileURLToPath(new URL(dir, import.meta.url))
 
@@ -203,7 +160,7 @@ export default defineConfig(({ command, mode }) => ({
     vDebugger({
       debug: mode !== 'production',
       local: true,
-      entry: resolve('src/main.ts'),// vue or src/main.tsx for react
+      entry: resolve('src/main.ts'), // vue or src/main.tsx for react
       vConsole: {
         options: {
           theme: 'dark',
