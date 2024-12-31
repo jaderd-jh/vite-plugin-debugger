@@ -19,6 +19,14 @@ export const transformCDN = async (pkg: string, cdn?: CDN) => {
     return `https://cdnjs.cloudflare.com/ajax/libs/${pkg}/${version}/${pkg.toLowerCase()}.min.js`
   }
 
+  if (cdn === 'staticfile') {
+    const libInfo = await fetch(`https://api.staticfile.bet/libraries/${pkg}`).then(
+      res => res.json() as Promise<{ version: string; filename: string }>
+    )
+    const { version, filename } = libInfo
+    return `https://cdn.staticfile.net/${pkg}/${version}/${filename}`
+  }
+
   return ''
 }
 

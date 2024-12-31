@@ -1,4 +1,4 @@
-export type CDN = 'jsdelivr' | 'unpkg' | 'cdnjs'
+export type CDN = 'jsdelivr' | 'unpkg' | 'cdnjs' | 'staticfile'
 
 export interface CommonConfig {
   /**
