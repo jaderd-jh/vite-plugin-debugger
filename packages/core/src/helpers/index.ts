@@ -1,13 +1,10 @@
-import type { ActiveConfig, CDN } from '../types'
+import type { CDN } from '../types'
+import { readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 
-export const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
-
-export const transformCDN = (pkg: string | string[], cdn?: CDN) => {
+export const transformCDN = async (pkg: string, cdn?: CDN) => {
   if (cdn === 'jsdelivr') {
-    if (Array.isArray(pkg)) {
-      return `https://cdn.jsdelivr.net/combine/${pkg.map(p => `npm/${p}`).join(',')}`
-    }
-    return `https://cdn.jsdelivr.net/npm/${pkg}`
+    return `https://cdn.jsdelivr.net/npm/${pkg.toLowerCase()}`
   }
 
   if (cdn === 'unpkg') {
@@ -15,41 +12,16 @@ export const transformCDN = (pkg: string | string[], cdn?: CDN) => {
   }
 
   if (cdn === 'cdnjs') {
-    if (!Array.isArray(pkg)) {
-      if (pkg === 'eruda') {
-        return 'https://cdnjs.cloudflare.com/ajax/libs/eruda/3.4.1/eruda.min.js'
-      }
-      throw new Error(`[vite-plugin-debugger]: ${cdn} only support eruda without its plugins.`)
-    }
-    return `https://cdnjs.cloudflare.com/ajax/libs/${pkg}`
+    const libInfo = await fetch(`https://api.cdnjs.com/libraries/${pkg}?fields=version`).then(
+      res => res.json() as Promise<{ version: string }>
+    )
+    const { version } = libInfo
+    return `https://cdnjs.cloudflare.com/ajax/libs/${pkg}/${version}/${pkg.toLowerCase()}.min.js`
   }
 
   return ''
 }
 
-export const debugInit = (debug: boolean, active?: ActiveConfig) => {
-  return `
-    const activeConfig = ${!!active}
-    const activePriority = ${active?.override}
-    let showDebug = false;
-    let storageStr = ''
-    if(${active?.mode === 'url'}){
-      let queryStr='';
-      const result = (window.location.href || '').match(new RegExp('[?&]${active?.param}=([^&]+)', 'i'));
-      if (Array.isArray(result) && result.length > 1) queryStr = result[1];
-      if (queryStr) localStorage.setItem('${active?.param}', queryStr);
-    }
-    if(${active?.mode === 'url' || active?.mode === 'storage'}){
-      storageStr = localStorage.getItem('${active?.param}')
-    }
-    if(activeConfig){
-      if(activePriority){
-        if (storageStr){ showDebug = true };
-      } else {
-        if (${debug} && storageStr){ showDebug = true };
-      }
-    } else {
-      showDebug = ${debug}
-    }
-  `
+export const readFileContent = (path: string) => {
+  return readFileSync(fileURLToPath(new URL(path, import.meta.url)), 'utf-8')
 }

@@ -35,7 +35,8 @@
     "lint": "eslint . --fix",
     "prepublishOnly": "publint",
     "release": "bumpp",
-    "publint": "npx publint"
+    "publint": "npx publint",
+    "prepare": "tsup --config tsup.precompile.config.ts"
   },
   "peerDependencies": {
     "eruda": "^3.0.0",
@@ -51,7 +52,9 @@
     }
   },
   "devDependencies": {
+    "@types/node": "^22.10.2",
     "local-pkg": "^0.5.1",
+    "terser": "^5.37.0",
     "tsup": "^8.3.5"
   }
 }

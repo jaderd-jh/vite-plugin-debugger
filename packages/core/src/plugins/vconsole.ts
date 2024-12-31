@@ -2,18 +2,13 @@
 
 import type { VConsoleOptions } from 'core/options.interface'
 import type { CommonConfig, SharedConfig } from '../types'
-import process from 'node:process'
 import { isPackageExists } from 'local-pkg'
-import {
-  type HtmlTagDescriptor,
-  type IndexHtmlTransformResult,
-  normalizePath,
-  type Plugin,
-  type TransformResult,
-} from 'vite'
-import { debugInit, transformCDN } from '../helpers'
+import { type HtmlTagDescriptor, normalizePath, type Plugin, type TransformResult } from 'vite'
+import { readFileContent, transformCDN } from '../helpers'
 
-export interface VConsoleConfig extends CommonConfig {
+export type { VConsoleOptions }
+
+interface VConsoleConfig extends CommonConfig {
   /**
    * vConsole options
    *
@@ -22,32 +17,28 @@ export interface VConsoleConfig extends CommonConfig {
   options?: VConsoleOptions
 }
 
-export interface VConsoleDebuggerOptions extends SharedConfig {
+interface VConsoleDebuggerOptions extends SharedConfig {
   /**
    * vConsole config
    */
   config?: VConsoleConfig
 }
 
-export const transformVConsoleOptions = (html: string, opts: VConsoleDebuggerOptions): IndexHtmlTransformResult => {
+const transformVConsoleOptions = async (html: string, opts: VConsoleDebuggerOptions) => {
   const { debug, active } = opts
   const { options, cdn = 'jsdelivr', src } = opts.config
   const tags: HtmlTagDescriptor[] = []
 
-  tags.push({
-    tag: 'script',
-    attrs: {
-      src: src || transformCDN('vconsole', cdn),
-    },
-    injectTo: 'head',
-  })
+  let injectCodes = ``
+  injectCodes += '\n(function(debug,active,options,cdn){\n'
+  injectCodes += readFileContent('./precompiled/show-or-not.js')
+  injectCodes += readFileContent('./precompiled/vconsole/prepend-script.js')
+  injectCodes += `\n})(${debug},${JSON.stringify(active)},${JSON.stringify(options)},${JSON.stringify(src || (await transformCDN('vConsole', cdn)))});\n`
 
   tags.push({
     tag: 'script',
-    children: `${debugInit(debug, active)}\n if(showDebug===true){var vConsole = new VConsole(${JSON.stringify(
-      options || {}
-    )})};`,
     injectTo: 'head',
+    children: injectCodes,
   })
 
   if (debug !== undefined) {
@@ -56,31 +47,30 @@ export const transformVConsoleOptions = (html: string, opts: VConsoleDebuggerOpt
       tags,
     }
   }
-
-  if (process.env.NODE_ENV !== 'production') {
-    return {
-      html,
-      tags,
-    }
-  }
 }
 
-export const transformVConsoleImport = (
+const transformVConsoleImport = (
   code: string,
   opts: VConsoleDebuggerOptions
 ): Promise<TransformResult> | TransformResult => {
   const { debug, active } = opts
   const { options = {} } = opts.config
+
+  let injectCodes = ``
+  injectCodes += '\n/* eslint-disable */\n'
+  injectCodes += '\n(function(debug,active,options){\n'
+  injectCodes += readFileContent('./precompiled/show-or-not.js')
+  injectCodes += readFileContent('./precompiled/vconsole/dynamic-import.js')
+  injectCodes += `\n})(${debug},${JSON.stringify(active)},${JSON.stringify(options)});\n`
+  injectCodes += '\n/* eslint-enable */\n'
+
   return {
-    code: `/* eslint-disable */;import VConsole from 'vconsole'; ${debugInit(
-      debug,
-      active
-    )}\n if(showDebug===true){new VConsole(${JSON.stringify(options)})};/* eslint-enable */${code}`,
+    code: `${injectCodes}${code}`,
     map: null,
   }
 }
 
-export const vDebugger = (options: VConsoleDebuggerOptions): Plugin => {
+export function vDebugger(options: VConsoleDebuggerOptions): Plugin {
   const { local = isPackageExists('vconsole'), entry } = options
 
   const entryPath = entry ? (Array.isArray(entry) ? entry : [entry]).map(path => normalizePath(path)) : []
@@ -88,7 +78,7 @@ export const vDebugger = (options: VConsoleDebuggerOptions): Plugin => {
   // use installed lib first
   if (local) {
     return {
-      name: 'vite-plugin-debugger',
+      name: 'vite:mobile-devtools:vconsole',
       transform(code: string, id: string): Promise<TransformResult> | TransformResult {
         if (entryPath.includes(id)) {
           return transformVConsoleImport(code, options)
@@ -100,9 +90,11 @@ export const vDebugger = (options: VConsoleDebuggerOptions): Plugin => {
   }
 
   return {
-    name: 'vite-plugin-debugger',
-    transformIndexHtml(html: string): IndexHtmlTransformResult {
-      return transformVConsoleOptions(html, options)
+    name: 'vite:mobile-devtools:vconsole',
+    transformIndexHtml: async (html: string) => {
+      return await transformVConsoleOptions(html, options)
     },
   }
 }
+
+export default vDebugger
