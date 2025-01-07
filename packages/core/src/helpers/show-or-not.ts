@@ -1,5 +1,8 @@
-// eslint-disable-next-line ts/ban-ts-comment
-// @ts-nocheck
+import type { ActiveConfig } from '../types'
+
+declare const debug: boolean
+declare const active: ActiveConfig
+
 let _show = false
 let storageStr = ''
 if (active?.mode === 'url') {

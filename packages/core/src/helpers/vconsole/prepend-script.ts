@@ -1,5 +1,10 @@
-// eslint-disable-next-line ts/ban-ts-comment
-// @ts-nocheck
+import type { VConsoleOptions } from 'core/options.interface'
+
+declare let _show: boolean
+declare let cdn: string
+declare const VConsole: typeof import('vconsole').default
+declare let options: VConsoleOptions
+
 if (_show) {
   const script = document.createElement('script')
   script.src = cdn
