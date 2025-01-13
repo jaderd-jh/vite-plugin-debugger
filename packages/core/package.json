@@ -53,7 +53,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
-    "local-pkg": "^0.5.1",
+    "local-pkg": "^1.0.0",
     "terser": "^5.37.0",
     "tsup": "^8.3.5"
   }
