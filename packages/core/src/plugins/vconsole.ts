@@ -1,9 +1,10 @@
 /// <reference path="../../../../node_modules/vconsole/dist/vconsole.min.d.ts" />
 
 import type { VConsoleOptions } from 'core/options.interface'
+import type { HtmlTagDescriptor, Plugin, TransformResult } from 'vite'
 import type { CommonConfig, SharedConfig } from '../types'
 import { isPackageExists } from 'local-pkg'
-import { type HtmlTagDescriptor, normalizePath, type Plugin, type TransformResult } from 'vite'
+import { normalizePath } from 'vite'
 import { readFileContent, transformCDN } from '../helpers'
 
 export type { VConsoleOptions }

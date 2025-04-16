@@ -1,2 +1,9 @@
 packages:
-  - 'packages/**/*'
+  - packages/**/*
+
+onlyBuiltDependencies:
+  - '@biomejs/biome'
+  - '@swc/core'
+  - core-js
+  - esbuild
+  - simple-git-hooks
