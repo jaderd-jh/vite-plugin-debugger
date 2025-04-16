@@ -3,11 +3,11 @@ import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 
 export const transformCDN = async (pkg: string, cdn?: CDN) => {
-  if (['eruda', 'vConsole'].includes(pkg)) {
+  if (!['eruda', 'vConsole'].includes(pkg)) {
     throw new Error(`The package "${pkg}" is not supported for CDN transformation.`)
   }
 
-  if (['jsdelivr', 'unpkg', 'cdnjs', 'staticfile'].includes(cdn)) {
+  if (!['jsdelivr', 'unpkg', 'cdnjs', 'staticfile'].includes(cdn)) {
     throw new Error(`The CDN "${cdn}" is not supported for "${pkg}".`)
   }
 
