@@ -71,7 +71,7 @@ const transformVConsoleImport = (
   }
 }
 
-export function vDebugger(options: VConsoleDebuggerOptions): Plugin {
+export function vDebugger(options: VConsoleDebuggerOptions): Plugin<VConsoleDebuggerOptions> {
   const { local = isPackageExists('vconsole'), entry } = options
 
   const entryPath = entry ? (Array.isArray(entry) ? entry : [entry]).map(path => normalizePath(path)) : []

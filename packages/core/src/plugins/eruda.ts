@@ -67,7 +67,7 @@ const transformErudaImport = (code: string, opts: ErudaDebuggerOptions): Promise
   }
 }
 
-export function vDebugger(options: ErudaDebuggerOptions): Plugin {
+export function vDebugger(options: ErudaDebuggerOptions): Plugin<ErudaDebuggerOptions> {
   const { local = isPackageExists('eruda'), entry } = options
 
   const entryPath = entry ? (Array.isArray(entry) ? entry : [entry]).map(path => normalizePath(path)) : []
