@@ -33,7 +33,7 @@
     "eruda": "^3.4.1",
     "eslint": "^9.24.0",
     "eslint-plugin-oxlint": "^0.16.6",
-    "lint-staged": "^15.5.1",
+    "lint-staged": "^16.0.0",
     "oxlint": "^0.16.6",
     "publint": "^0.3.12",
     "simple-git-hooks": "^2.12.1",
