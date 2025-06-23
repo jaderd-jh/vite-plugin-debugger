@@ -25,7 +25,7 @@
     "prepare": "npx simple-git-hooks && npx playwright install --with-deps"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
+    "@biomejs/biome": "^2.0.0",
     "@jhqn/eslint-config": "^0.8.1",
     "@playwright/test": "^1.51.1",
     "@types/node": "^22.14.1",
