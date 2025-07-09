@@ -1,10 +1,8 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-  "organizeImports": {
-    "enabled": false
-  },
+  "$schema": "https://biomejs.dev/schemas/2.1.1/schema.json",
+  "assist": { "actions": { "source": { "organizeImports": "off" } } },
   "files": {
-    "ignore": ["**/*/dist", "**/*/build", "public/**/*", "**/*/.gen"],
+    "includes": ["**", "!**/*/dist", "!**/*/build", "!**/public/**/*", "!**/*/.gen"],
     "ignoreUnknown": true
   },
   "linter": {
@@ -19,7 +17,7 @@
   "formatter": {
     "enabled": true,
     "formatWithErrors": false,
-    "ignore": [],
+    "includes": ["**"],
     "attributePosition": "auto",
     "indentStyle": "space",
     "indentWidth": 2,
