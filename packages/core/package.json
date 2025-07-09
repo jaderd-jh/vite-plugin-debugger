@@ -1,7 +1,7 @@
 {
   "name": "vite-plugin-debugger",
   "type": "module",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "A vite plugin provide the debugger tools for mobile devices.",
   "author": "jade-gjz",
   "license": "MIT",
