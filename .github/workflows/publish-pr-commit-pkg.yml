@@ -16,7 +16,7 @@ jobs:
     if: ${{ github.repository == 'jaderd-jh/vite-plugin-debugger' }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install pnpm
         run: npm install -g corepack@latest --force | corepack enable
