@@ -61,7 +61,7 @@
     }
   },
   "devDependencies": {
-    "@types/node": "^22.14.1",
+    "@types/node": "^24.0.0",
     "local-pkg": "^1.1.1",
     "terser": "^5.43.1",
     "tsup": "^8.5.0"
