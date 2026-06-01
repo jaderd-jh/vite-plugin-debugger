@@ -3,8 +3,6 @@
   "compilerOptions": {
     "lib": ["esnext", "dom"],
     "types": ["eruda", "vconsole"],
-    "declaration": true,
-    "declarationMap": true,
     "allowSyntheticDefaultImports": true
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts"]

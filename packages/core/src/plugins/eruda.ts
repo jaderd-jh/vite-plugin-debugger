@@ -25,7 +25,7 @@ interface ErudaDebuggerOptions extends SharedConfig {
 
 const transformErudaOptions = async (html: string, opts: ErudaDebuggerOptions) => {
   const { debug, active } = opts
-  const { options, cdn = 'jsdelivr', src } = opts.config
+  const { options, cdn = 'jsdelivr', src } = opts.config || {}
 
   const tags: HtmlTagDescriptor[] = []
 
@@ -51,7 +51,7 @@ const transformErudaOptions = async (html: string, opts: ErudaDebuggerOptions) =
 
 const transformErudaImport = (code: string, opts: ErudaDebuggerOptions): Promise<TransformResult> | TransformResult => {
   const { debug, active } = opts
-  const { options = {} } = opts.config
+  const { options = {} } = opts.config || {}
 
   let injectCodes = ``
   injectCodes += '\n/* eslint-disable */\n'

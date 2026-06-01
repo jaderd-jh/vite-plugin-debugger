@@ -27,7 +27,7 @@ interface VConsoleDebuggerOptions extends SharedConfig {
 
 const transformVConsoleOptions = async (html: string, opts: VConsoleDebuggerOptions) => {
   const { debug, active } = opts
-  const { options, cdn = 'jsdelivr', src } = opts.config
+  const { options, cdn = 'jsdelivr', src } = opts.config || {}
   const tags: HtmlTagDescriptor[] = []
 
   let injectCodes = ``
@@ -55,7 +55,7 @@ const transformVConsoleImport = (
   opts: VConsoleDebuggerOptions
 ): Promise<TransformResult> | TransformResult => {
   const { debug, active } = opts
-  const { options = {} } = opts.config
+  const { options = {} } = opts.config || {}
 
   let injectCodes = ``
   injectCodes += '\n/* eslint-disable */\n'

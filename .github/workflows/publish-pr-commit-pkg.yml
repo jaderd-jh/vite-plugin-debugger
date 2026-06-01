@@ -16,7 +16,7 @@ jobs:
     if: ${{ github.repository == 'jaderd-jh/vite-plugin-debugger' }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install pnpm
         run: npm install -g corepack@latest --force | corepack enable
@@ -24,11 +24,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: lts/jod
+          node-version: lts/krypton
           cache: pnpm
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile

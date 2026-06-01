@@ -1,9 +1,9 @@
 packages:
   - packages/**/*
 
-onlyBuiltDependencies:
-  - '@biomejs/biome'
-  - '@swc/core'
-  - core-js
-  - esbuild
-  - simple-git-hooks
+allowBuilds:
+  '@swc/core': false
+  core-js: false
+  esbuild: false
+  simple-git-hooks: false
+  unrs-resolver: false

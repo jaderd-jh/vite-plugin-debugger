@@ -4,7 +4,7 @@ declare const debug: boolean
 declare const active: ActiveConfig
 
 let _show = false
-let storageStr = ''
+let storageStr: string | null = ''
 if (active?.mode === 'url') {
   let queryStr = ''
   const result = window.location.href.match(new RegExp(`[?&]${active.param}=([^&]+)`, 'i'))
