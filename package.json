@@ -46,7 +46,7 @@
   },
   "lint-staged": {
     "*": [
-      "oxlint --quiet --fix --ignore-path .lintignore",
+      "oxlint --no-error-on-unmatched-pattern --quiet --fix --ignore-path .lintignore",
       "eslint --cache --quiet --fix",
       "biome check --write --no-errors-on-unmatched"
     ]
